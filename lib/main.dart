@@ -17,26 +17,31 @@ class MindfulMeApp extends StatelessWidget {
   // Key = Unique identifier Flutter uses to track widgets
   // : super(key: key) = Pass the key to the parent class (StatelessWidget)
 
+  
   @override // Override the build method from StatelessWidget
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {//build = Special method that Flutter calls to draw your UI
+    //BuildContext context = Information about where this widget is in the widget tree
+    
     return MaterialApp(
       //MaterialApp = The root widget of your app (like the foundation of a house)
+      
       title: 'MindfulMe', // Title of the app
       debugShowCheckedModeBanner: false, // Disable the debug banner
-
-      theme: ThemeData(
+      
+      theme: ThemeData( 
         brightness: Brightness.dark, // Set the app theme to dark mode
         primaryColor: const Color(0xFF0d3d3d), // Primary color of the app
-        scaffoldBackgroundColor: const Color(
+        scaffoldBackgroundColor: const Color( 
           0xFF0d3d3d,
         ), // Background color of the app
         colorScheme: const ColorScheme.dark(
-          primary: Color(0xFF2dd4bf), // Primary color in dark mode
-          secondary: Color(0xFF10b981), // Secondary color in dark mode
-          surface: Color(0xFF1a5555), // Surface color in dark mode
+
+          primary: Color(0xFF2dd4bf), // Main color (buttons, highlights)
+          secondary: Color(0xFF10b981), // Accent color is used for highlights
+          surface: Color(0xFF1a5555), // Background color for cards, dialogs
         ),
 
-        appBarTheme: const AppBarTheme(
+        appBarTheme: const AppBarTheme( // Theme for the app bar (top navigation bar)
           backgroundColor: Color(0xFF0d3d3d),
           elevation: 0,
         ),
@@ -49,20 +54,36 @@ class MindfulMeApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
+  // SplashScreen = Initial screen shown when the app launches
+  // StatefulWidget = Widget that can change its state over time
+  // We use StatefulWidget here because we need to check login status asynchronously
   const SplashScreen({Key? key}) : super(key: key);
+  // Constructor for SplashScreen class
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
+  // State<SplashScreen> = Return type (the state object for SplashScreen)
+  // createState = Method that creates the mutable state for this widget
+  // => _SplashScreenState() = Arrow function (shorthand for return)
+  // _SplashScreenState = Private class (underscore _ means private)
 }
 
+
 class _SplashScreenState extends State<SplashScreen> {
+  
   @override
   void initState() {
-    super.initState();
-    _checkLoginStatus();
+    // Type: Lifecycle method
+    // Purpose: Runs ONCE when widget is first created
+    // Like: The constructor, but for the State class
+    // Use case: Initialize data, start timers, load from database
+    super.initState();// Always call parent's initState() first
+    _checkLoginStatus(); // Check if user is logged in
   }
 
-  Future<void> _checkLoginStatus() async {
+  Future<void> _checkLoginStatus() async { // Return type for asynchronous operations
+    // Something that will complete in the future
+    
     await Future.delayed(
       const Duration(seconds: 2),
     ); // Simulate a delay for the splash screen
